@@ -1,10 +1,11 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:jurysoft_mt/models/cart.dart';
+import 'package:jurysoft_mt/models/orders.dart';
 import 'package:jurysoft_mt/models/products.dart';
 import 'package:jurysoft_mt/screens/home_screen.dart';
 import 'package:jurysoft_mt/screens/product_detail_screen.dart';
 import 'package:provider/provider.dart';
-
 
 void main() {
   runApp(const MyApp());
@@ -22,6 +23,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider.value(
           value: Cart(), // Create an instance of Products here
+        ),
+        ChangeNotifierProvider.value(
+          value: Orders(), // Create an instance of Products here
         )
       ],
       child: MaterialApp(
@@ -32,7 +36,6 @@ class MyApp extends StatelessWidget {
           primaryColor: Colors.teal,
         ),
         home: const HomeScreen(),
-        
       ),
     );
   }
