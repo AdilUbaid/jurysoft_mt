@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:jurysoft_mt/models/cart.dart';
 import 'package:jurysoft_mt/models/products.dart';
 
 import 'package:jurysoft_mt/screens/product_detail_screen.dart';
@@ -18,7 +19,8 @@ class ProductCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final productData = Provider.of<Products>(context);
+    final product = Provider.of<Product>(context);
+    final cart = Provider.of<Cart>(context);
     // final pdts = productData.items;
     return GestureDetector(
       onTap: () => Navigator.push(
@@ -37,7 +39,12 @@ class ProductCardWidget extends StatelessWidget {
               icon: const Icon(
                 Icons.shopping_cart,
               ),
-              onPressed: () {},
+              onPressed: () {
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content: Text("Item added to cart "),
+                    duration: Duration(seconds: 3)));
+                cart.addItem(product.id, product.name, product.price);
+              },
             ),
             backgroundColor: Colors.black45,
           ),

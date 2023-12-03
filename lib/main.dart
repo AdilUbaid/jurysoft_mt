@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jurysoft_mt/models/cart.dart';
 import 'package:jurysoft_mt/models/products.dart';
 import 'package:jurysoft_mt/screens/home_screen.dart';
 import 'package:jurysoft_mt/screens/product_detail_screen.dart';
@@ -18,6 +19,9 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider.value(
           value: Products(), // Create an instance of Products here
+        ),
+        ChangeNotifierProvider.value(
+          value: Cart(), // Create an instance of Products here
         )
       ],
       child: MaterialApp(

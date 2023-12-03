@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:jurysoft_mt/models/cart.dart';
 import 'package:provider/provider.dart';
 
 import 'package:jurysoft_mt/models/products.dart';
@@ -15,6 +16,7 @@ class DetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final productData = Provider.of<Products>(context);
+    final cart = Provider.of<Cart>(context);
     final pdts = productData.items;
     return Scaffold(
       appBar: AppBar(
@@ -41,31 +43,37 @@ class DetailScreen extends StatelessWidget {
                             fit: BoxFit.fitHeight)),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Text(
                   "\$ ${pdts[index].price}",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 23),
+                  style: const TextStyle(
+                      fontWeight: FontWeight.bold, fontSize: 23),
                 ),
                 Text(
                   "${pdts[index].description}",
-                  style: TextStyle(fontSize: 17),
+                  style: const TextStyle(fontSize: 17),
                 )
               ],
             ),
             TextButton(
-                onPressed: () {},
-                child: Container(
-                    width: double.infinity,
-                    height: 50,
-                    decoration: BoxDecoration(color: Colors.blue),
-                    child: Center(
-                      child: Text(
-                        "Add to cart",
-                        style: TextStyle(fontSize: 18, color: Colors.white),
-                      ),
-                    )))
+              onPressed: () {
+                cart.addItem(
+                    pdts[index].id, pdts[index].name, pdts[index].price);
+              },
+              child: Container(
+                width: double.infinity,
+                height: 50,
+                decoration: const BoxDecoration(color: Colors.blue),
+                child: const Center(
+                  child: Text(
+                    "Add to cart",
+                    style: TextStyle(fontSize: 18, color: Colors.white),
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),
